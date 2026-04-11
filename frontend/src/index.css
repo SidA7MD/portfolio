@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-[#161B22]/80 backdrop-blur-md border border-white/5;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0D1117;
+}
+
+body {
+  @apply bg-[#0D1117] text-white antialiased font-sans flex flex-col min-h-screen relative overflow-x-hidden;
+}
+
+/* Developer Tech Grid Background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+#root {
+  @apply flex flex-col min-h-screen relative z-10;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4F7FD4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6A96DC;
+}
+
+/* Glowing text effect for accents */
+.text-glow {
+  text-shadow: 0 0 12px rgba(79, 127, 212, 0.4);
+}
+
+.glow-blue {
+  box-shadow: 0 0 16px rgba(79, 127, 212, 0.15);
+}
+
+.glow-purple {
+  box-shadow: 0 0 16px rgba(124, 93, 191, 0.15);
+}
+
+/* Selection */
+::selection {
+  background: rgba(79, 127, 212, 0.25);
+  color: #fff;
+}
+
