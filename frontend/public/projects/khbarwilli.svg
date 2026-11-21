@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="kBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#09060f"/><stop offset="100%" stop-color="#0d0a16"/></linearGradient>
+    <linearGradient id="kHeader" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7c3dbf"/><stop offset="100%" stop-color="#4f7fd4"/></linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#kBg)"/>
+  <!-- Background decorative circles -->
+  <circle cx="200" cy="375" r="300" fill="#7c3dbf" fill-opacity="0.04"/>
+  <circle cx="1000" cy="375" r="250" fill="#4f7fd4" fill-opacity="0.04"/>
+  <!-- Top bar -->
+  <rect width="1200" height="62" fill="url(#kHeader)" opacity="0.9"/>
+  <text x="24" y="37" fill="white" font-size="16" font-weight="bold" font-family="Arial,sans-serif">Khbarwilli</text>
+  <text x="130" y="37" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.6">— School Attendance Manager</text>
+  <text x="860" y="37" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.7">Tahour El Jadid School</text>
+  <circle cx="1140" cy="31" r="18" fill="white" fill-opacity="0.15"/>
+  <!-- Left sidebar (web panel) -->
+  <rect x="0" y="62" width="250" height="688" fill="#120e1c"/>
+  <line x1="250" y1="62" x2="250" y2="750" stroke="#7c3dbf" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="20" y="96" fill="white" font-size="11" font-weight="bold" font-family="Arial,sans-serif" opacity="0.5">NAVIGATION</text>
+  <rect x="12" y="104" width="226" height="38" rx="8" fill="#7c3dbf" fill-opacity="0.2"/>
+  <rect x="20" y="116" width="10" height="10" rx="2" fill="#7c3dbf" opacity="0.8"/>
+  <text x="40" y="126" fill="#7c3dbf" font-size="12" font-weight="bold" font-family="Arial,sans-serif">Dashboard</text>
+  <rect x="20" y="156" width="10" height="10" rx="2" fill="white" opacity="0.25"/>
+  <text x="40" y="166" fill="white" font-size="12" font-family="Arial,sans-serif" opacity="0.4">Students</text>
+  <rect x="20" y="192" width="10" height="10" rx="2" fill="white" opacity="0.25"/>
+  <text x="40" y="202" fill="white" font-size="12" font-family="Arial,sans-serif" opacity="0.4">Attendance</text>
+  <rect x="20" y="228" width="10" height="10" rx="2" fill="white" opacity="0.25"/>
+  <text x="40" y="238" fill="white" font-size="12" font-family="Arial,sans-serif" opacity="0.4">Reports</text>
+  <rect x="20" y="264" width="10" height="10" rx="2" fill="white" opacity="0.25"/>
+  <text x="40" y="274" fill="white" font-size="12" font-family="Arial,sans-serif" opacity="0.4">Parents</text>
+  <rect x="20" y="300" width="10" height="10" rx="2" fill="white" opacity="0.25"/>
+  <text x="40" y="310" fill="white" font-size="12" font-family="Arial,sans-serif" opacity="0.4">Settings</text>
+  <!-- Stats cards in sidebar -->
+  <rect x="12" y="360" width="226" height="80" rx="8" fill="#7c3dbf" fill-opacity="0.12" stroke="#7c3dbf" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="28" y="385" fill="#7c3dbf" font-size="10" font-family="Arial,sans-serif" opacity="0.8">TOTAL STUDENTS</text>
+  <text x="28" y="420" fill="white" font-size="30" font-weight="bold" font-family="Arial,sans-serif">348</text>
+  <rect x="12" y="455" width="226" height="80" rx="8" fill="#4f7fd4" fill-opacity="0.1" stroke="#4f7fd4" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="28" y="480" fill="#4f7fd4" font-size="10" font-family="Arial,sans-serif" opacity="0.8">TODAY PRESENT</text>
+  <text x="28" y="515" fill="white" font-size="30" font-weight="bold" font-family="Arial,sans-serif">312</text>
+  <rect x="12" y="550" width="226" height="80" rx="8" fill="#ff5d22" fill-opacity="0.08" stroke="#ff5d22" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="28" y="575" fill="#ff5d22" font-size="10" font-family="Arial,sans-serif" opacity="0.8">ABSENT TODAY</text>
+  <text x="28" y="610" fill="white" font-size="30" font-weight="bold" font-family="Arial,sans-serif">36</text>
+  <!-- Main content area -->
+  <!-- Date + search bar -->
+  <rect x="268" y="78" width="910" height="46" rx="8" fill="#120e1c" stroke="#7c3dbf" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="288" y="106" fill="white" font-size="12" font-weight="bold" font-family="Arial,sans-serif" opacity="0.6">November 21, 2026</text>
+  <rect x="790" y="84" width="220" height="34" rx="6" fill="#1a1428" stroke="#7c3dbf" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="808" y="105" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.3">Search student…</text>
+  <rect x="1020" y="84" width="140" height="34" rx="6" fill="#7c3dbf" opacity="0.8"/>
+  <text x="1090" y="105" text-anchor="middle" fill="white" font-size="11" font-weight="bold" font-family="Arial,sans-serif">+ Mark Today</text>
+  <!-- Attendance table -->
+  <rect x="268" y="140" width="910" height="38" rx="6" fill="#1a1428"/>
+  <text x="288" y="164" fill="white" font-size="10" font-family="Arial,sans-serif" opacity="0.4">#</text>
+  <text x="318" y="164" fill="white" font-size="10" font-family="Arial,sans-serif" opacity="0.4">STUDENT NAME</text>
+  <text x="560" y="164" fill="white" font-size="10" font-family="Arial,sans-serif" opacity="0.4">CLASS</text>
+  <text x="680" y="164" fill="white" font-size="10" font-family="Arial,sans-serif" opacity="0.4">STATUS</text>
+  <text x="820" y="164" fill="white" font-size="10" font-family="Arial,sans-serif" opacity="0.4">TIME IN</text>
+  <text x="940" y="164" fill="white" font-size="10" font-family="Arial,sans-serif" opacity="0.4">PARENT NOTIFIED</text>
+  <!-- Rows -->
+  <rect x="268" y="180" width="910" height="44" rx="0" fill="white" fill-opacity="0.025"/>
+  <text x="288" y="207" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">01</text>
+  <text x="318" y="207" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.8">Ahmed Ould Salem</text>
+  <text x="560" y="207" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">3A</text>
+  <rect x="680" y="192" width="62" height="22" rx="11" fill="#47a248" fill-opacity="0.2"/>
+  <text x="711" y="207" text-anchor="middle" fill="#47a248" font-size="10" font-family="Arial,sans-serif">Present</text>
+  <text x="820" y="207" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">08:12</text>
+  <text x="940" y="207" fill="#47a248" font-size="11" font-family="Arial,sans-serif" opacity="0.6">—</text>
+  <line x1="268" y1="224" x2="1178" y2="224" stroke="white" stroke-width="0.5" stroke-opacity="0.05"/>
+  <text x="288" y="253" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">02</text>
+  <text x="318" y="253" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.8">Mariam Mint Brahim</text>
+  <text x="560" y="253" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">3A</text>
+  <rect x="680" y="238" width="62" height="22" rx="11" fill="#ff5d22" fill-opacity="0.18"/>
+  <text x="711" y="253" text-anchor="middle" fill="#ff5d22" font-size="10" font-family="Arial,sans-serif">Absent</text>
+  <text x="820" y="253" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.3">—</text>
+  <text x="940" y="253" fill="#ff5d22" font-size="11" font-family="Arial,sans-serif" opacity="0.7">✓ SMS sent</text>
+  <line x1="268" y1="270" x2="1178" y2="270" stroke="white" stroke-width="0.5" stroke-opacity="0.05"/>
+  <text x="288" y="299" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">03</text>
+  <text x="318" y="299" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.8">Youssef Ould Ndiaye</text>
+  <text x="560" y="299" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">3B</text>
+  <rect x="680" y="284" width="62" height="22" rx="11" fill="#47a248" fill-opacity="0.2"/>
+  <text x="711" y="299" text-anchor="middle" fill="#47a248" font-size="10" font-family="Arial,sans-serif">Present</text>
+  <text x="820" y="299" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">08:08</text>
+  <text x="940" y="299" fill="#47a248" font-size="11" font-family="Arial,sans-serif" opacity="0.6">—</text>
+  <line x1="268" y1="316" x2="1178" y2="316" stroke="white" stroke-width="0.5" stroke-opacity="0.05"/>
+  <text x="288" y="345" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.3">04</text>
+  <text x="318" y="345" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.5">Fatima Mint Cheikh</text>
+  <text x="560" y="345" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.3">3B</text>
+  <rect x="680" y="330" width="78" height="22" rx="11" fill="#4f7fd4" fill-opacity="0.15"/>
+  <text x="719" y="345" text-anchor="middle" fill="#4f7fd4" font-size="10" font-family="Arial,sans-serif">Late (08:35)</text>
+  <text x="940" y="345" fill="#4f7fd4" font-size="11" font-family="Arial,sans-serif" opacity="0.6">—</text>
+  <line x1="268" y1="362" x2="1178" y2="362" stroke="white" stroke-width="0.5" stroke-opacity="0.05"/>
+  <text x="288" y="391" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.2">05</text>
+  <text x="318" y="391" fill="white" font-size="11" font-family="Arial,sans-serif" opacity="0.3">Ibrahim Ould Sidi…</text>
+  <!-- Bar chart section -->
+  <rect x="268" y="420" width="430" height="310" rx="10" fill="#120e1c" stroke="#7c3dbf" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="288" y="446" fill="white" font-size="11" font-weight="bold" font-family="Arial,sans-serif" opacity="0.6">Weekly Attendance Rate</text>
+  <!-- Bars -->
+  <rect x="310" y="510" width="40" height="170" rx="4" fill="#7c3dbf" opacity="0.6"/>
+  <text x="330" y="694" text-anchor="middle" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.4">Mon</text>
+  <text x="330" y="508" text-anchor="middle" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.6">91%</text>
+  <rect x="380" y="530" width="40" height="150" rx="4" fill="#7c3dbf" opacity="0.5"/>
+  <text x="400" y="694" text-anchor="middle" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.4">Tue</text>
+  <text x="400" y="528" text-anchor="middle" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.6">88%</text>
+  <rect x="450" y="500" width="40" height="180" rx="4" fill="#7c3dbf" opacity="0.7"/>
+  <text x="470" y="694" text-anchor="middle" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.4">Wed</text>
+  <text x="470" y="498" text-anchor="middle" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.6">94%</text>
+  <rect x="520" y="545" width="40" height="135" rx="4" fill="#7c3dbf" opacity="0.4"/>
+  <text x="540" y="694" text-anchor="middle" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.4">Thu</text>
+  <text x="540" y="543" text-anchor="middle" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.6">85%</text>
+  <rect x="590" y="520" width="40" height="160" rx="4" fill="#4f7fd4" opacity="0.7"/>
+  <text x="610" y="694" text-anchor="middle" fill="#4f7fd4" font-size="9" font-family="Arial,sans-serif" opacity="0.8">Fri</text>
+  <text x="610" y="518" text-anchor="middle" fill="#4f7fd4" font-size="9" font-family="Arial,sans-serif" opacity="0.9">90%</text>
+  <!-- Notifications panel -->
+  <rect x="718" y="420" width="460" height="310" rx="10" fill="#120e1c" stroke="#7c3dbf" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="738" y="446" fill="white" font-size="11" font-weight="bold" font-family="Arial,sans-serif" opacity="0.6">Parent Notifications</text>
+  <rect x="738" y="460" width="420" height="55" rx="8" fill="#ff5d22" fill-opacity="0.07" stroke="#ff5d22" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="754" y="480" fill="#ff5d22" font-size="10" font-weight="bold" font-family="Arial,sans-serif">Mariam Mint Brahim — Absent</text>
+  <text x="754" y="498" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.4">SMS sent to +222 36••••12  •  08:35</text>
+  <rect x="738" y="526" width="420" height="55" rx="8" fill="#4f7fd4" fill-opacity="0.06" stroke="#4f7fd4" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="754" y="546" fill="#4f7fd4" font-size="10" font-weight="bold" font-family="Arial,sans-serif">Fatima Mint Cheikh — Late</text>
+  <text x="754" y="564" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.4">SMS sent to +222 22••••88  •  08:36</text>
+  <rect x="738" y="592" width="420" height="55" rx="8" fill="#47a248" fill-opacity="0.05" stroke="#47a248" stroke-width="1" stroke-opacity="0.15"/>
+  <text x="754" y="612" fill="#47a248" font-size="10" font-weight="bold" font-family="Arial,sans-serif">All 3A students present ✓</text>
+  <text x="754" y="630" fill="white" font-size="9" font-family="Arial,sans-serif" opacity="0.3">Auto-confirmation sent  •  08:15</text>
+</svg>

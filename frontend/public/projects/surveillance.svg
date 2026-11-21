@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="sBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#040d08"/><stop offset="100%" stop-color="#06100a"/></linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#sBg)"/>
+  <!-- Subtle grid -->
+  <line x1="0" y1="250" x2="1200" y2="250" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.06"/>
+  <line x1="0" y1="500" x2="1200" y2="500" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.06"/>
+  <line x1="400" y1="0" x2="400" y2="750" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.06"/>
+  <line x1="800" y1="0" x2="800" y2="750" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.06"/>
+  <!-- Top bar -->
+  <rect width="1200" height="58" fill="#061409" stroke="#00e676" stroke-width="0" opacity="0.95"/>
+  <line x1="0" y1="58" x2="1200" y2="58" stroke="#00e676" stroke-width="1" stroke-opacity="0.3"/>
+  <circle cx="20" cy="29" r="6" fill="#00e676" opacity="0.8"/>
+  <text x="36" y="34" fill="#00e676" font-size="13" font-family="monospace" font-weight="bold">ENV-MONITOR v3.1</text>
+  <text x="400" y="34" fill="white" font-size="11" font-family="monospace" opacity="0.3">Station: Nouakchott-01</text>
+  <text x="700" y="34" fill="white" font-size="11" font-family="monospace" opacity="0.3">Uptime: 14d 06h 42m</text>
+  <rect x="1050" y="16" width="80" height="26" rx="4" fill="#00e676" fill-opacity="0.1" stroke="#00e676" stroke-width="1" stroke-opacity="0.5"/>
+  <text x="1090" y="34" text-anchor="middle" fill="#00e676" font-size="10" font-family="monospace">● ONLINE</text>
+  <!-- 4 Sensor Gauge panels top row -->
+  <!-- Temperature -->
+  <rect x="20" y="78" width="260" height="155" rx="10" fill="#071a0d" stroke="#00e676" stroke-width="1" stroke-opacity="0.25"/>
+  <text x="40" y="104" fill="#00e676" font-size="10" font-family="monospace" opacity="0.7">TEMPERATURE</text>
+  <text x="40" y="176" fill="#00e676" font-size="42" font-weight="bold" font-family="monospace">38.4</text>
+  <text x="175" y="176" fill="#00e676" font-size="20" font-family="monospace" opacity="0.6">°C</text>
+  <text x="40" y="206" fill="white" font-size="9" font-family="monospace" opacity="0.4">MAX: 41.2  MIN: 24.1</text>
+  <!-- Humidity -->
+  <rect x="300" y="78" width="260" height="155" rx="10" fill="#071a0d" stroke="#00e676" stroke-width="1" stroke-opacity="0.25"/>
+  <text x="320" y="104" fill="#00e676" font-size="10" font-family="monospace" opacity="0.7">HUMIDITY</text>
+  <text x="320" y="176" fill="#4f7fd4" font-size="42" font-weight="bold" font-family="monospace">62</text>
+  <text x="395" y="176" fill="#4f7fd4" font-size="20" font-family="monospace" opacity="0.6">%</text>
+  <text x="320" y="206" fill="white" font-size="9" font-family="monospace" opacity="0.4">MAX: 78%  MIN: 45%</text>
+  <!-- CO2 / Gas -->
+  <rect x="580" y="78" width="260" height="155" rx="10" fill="#071a0d" stroke="#ff5d22" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="600" y="104" fill="#ff5d22" font-size="10" font-family="monospace" opacity="0.8">GAS / CO2</text>
+  <text x="600" y="176" fill="#ff5d22" font-size="42" font-weight="bold" font-family="monospace">412</text>
+  <text x="707" y="176" fill="#ff5d22" font-size="14" font-family="monospace" opacity="0.6">ppm</text>
+  <text x="600" y="206" fill="#ff5d22" font-size="9" font-family="monospace" opacity="0.7">⚠ SLIGHTLY ELEVATED</text>
+  <!-- Pressure -->
+  <rect x="860" y="78" width="320" height="155" rx="10" fill="#071a0d" stroke="#00e676" stroke-width="1" stroke-opacity="0.25"/>
+  <text x="880" y="104" fill="#00e676" font-size="10" font-family="monospace" opacity="0.7">PRESSURE / LIGHT</text>
+  <text x="880" y="155" fill="white" font-size="22" font-weight="bold" font-family="monospace" opacity="0.8">1013</text>
+  <text x="980" y="155" fill="white" font-size="12" font-family="monospace" opacity="0.4">hPa</text>
+  <text x="880" y="185" fill="white" font-size="22" font-weight="bold" font-family="monospace" opacity="0.8">8420</text>
+  <text x="980" y="185" fill="white" font-size="12" font-family="monospace" opacity="0.4">lux</text>
+  <!-- Main temp chart -->
+  <rect x="20" y="253" width="740" height="260" rx="10" fill="#071a0d" stroke="#00e676" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="40" y="280" fill="#00e676" font-size="10" font-family="monospace" opacity="0.8">TEMPERATURE — 24H TREND</text>
+  <!-- Y axis labels -->
+  <text x="30" y="306" fill="white" font-size="8" font-family="monospace" opacity="0.3">45°</text>
+  <text x="30" y="356" fill="white" font-size="8" font-family="monospace" opacity="0.3">35°</text>
+  <text x="30" y="406" fill="white" font-size="8" font-family="monospace" opacity="0.3">25°</text>
+  <text x="30" y="456" fill="white" font-size="8" font-family="monospace" opacity="0.3">15°</text>
+  <!-- Grid lines -->
+  <line x1="55" y1="300" x2="740" y2="300" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.08"/>
+  <line x1="55" y1="350" x2="740" y2="350" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.08"/>
+  <line x1="55" y1="400" x2="740" y2="400" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.08"/>
+  <line x1="55" y1="450" x2="740" y2="450" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.08"/>
+  <!-- Temperature line -->
+  <polyline points="55,430 95,420 135,415 175,400 215,385 255,370 295,355 335,340 375,338 415,330 455,336 495,345 535,355 575,370 615,378 655,374 695,382 735,384" fill="none" stroke="#00e676" stroke-width="2" stroke-opacity="0.85"/>
+  <polyline points="55,430 95,420 135,415 175,400 215,385 255,370 295,355 335,340 375,338 415,330 455,336 495,345 535,355 575,370 615,378 655,374 695,382 735,384 735,490 55,490" fill="#00e676" fill-opacity="0.05"/>
+  <!-- X axis labels -->
+  <text x="55" y="478" fill="white" font-size="8" font-family="monospace" opacity="0.3">00:00</text>
+  <text x="175" y="478" fill="white" font-size="8" font-family="monospace" opacity="0.3">06:00</text>
+  <text x="335" y="478" fill="white" font-size="8" font-family="monospace" opacity="0.3">12:00</text>
+  <text x="495" y="478" fill="white" font-size="8" font-family="monospace" opacity="0.3">18:00</text>
+  <text x="655" y="478" fill="white" font-size="8" font-family="monospace" opacity="0.3">Now</text>
+  <!-- Right: data table -->
+  <rect x="780" y="253" width="400" height="260" rx="10" fill="#071a0d" stroke="#00e676" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="800" y="280" fill="#00e676" font-size="10" font-family="monospace" opacity="0.8">LATEST READINGS</text>
+  <line x1="800" y1="290" x2="1160" y2="290" stroke="#00e676" stroke-width="0.5" stroke-opacity="0.15"/>
+  <text x="800" y="314" fill="white" font-size="9" font-family="monospace" opacity="0.4">TIME</text>
+  <text x="900" y="314" fill="white" font-size="9" font-family="monospace" opacity="0.4">TEMP</text>
+  <text x="990" y="314" fill="white" font-size="9" font-family="monospace" opacity="0.4">HUM</text>
+  <text x="1070" y="314" fill="white" font-size="9" font-family="monospace" opacity="0.4">GAS</text>
+  <text x="800" y="338" fill="#00e676" font-size="9" font-family="monospace">18:42</text>
+  <text x="900" y="338" fill="#00e676" font-size="9" font-family="monospace">38.4°C</text>
+  <text x="990" y="338" fill="#4f7fd4" font-size="9" font-family="monospace">62%</text>
+  <text x="1070" y="338" fill="#ff5d22" font-size="9" font-family="monospace">412ppm</text>
+  <text x="800" y="360" fill="white" font-size="9" font-family="monospace" opacity="0.4">18:40</text>
+  <text x="900" y="360" fill="white" font-size="9" font-family="monospace" opacity="0.4">38.1°C</text>
+  <text x="990" y="360" fill="white" font-size="9" font-family="monospace" opacity="0.4">63%</text>
+  <text x="1070" y="360" fill="white" font-size="9" font-family="monospace" opacity="0.4">408ppm</text>
+  <text x="800" y="382" fill="white" font-size="9" font-family="monospace" opacity="0.3">18:38</text>
+  <text x="900" y="382" fill="white" font-size="9" font-family="monospace" opacity="0.3">37.9°C</text>
+  <text x="990" y="382" fill="white" font-size="9" font-family="monospace" opacity="0.3">64%</text>
+  <text x="1070" y="382" fill="white" font-size="9" font-family="monospace" opacity="0.3">405ppm</text>
+  <text x="800" y="404" fill="white" font-size="9" font-family="monospace" opacity="0.2">18:36</text>
+  <text x="900" y="404" fill="white" font-size="9" font-family="monospace" opacity="0.2">37.6°C</text>
+  <text x="990" y="404" fill="white" font-size="9" font-family="monospace" opacity="0.2">65%</text>
+  <text x="1070" y="404" fill="white" font-size="9" font-family="monospace" opacity="0.2">402ppm</text>
+  <!-- Bottom row: alerts + system -->
+  <rect x="20" y="533" width="400" height="195" rx="10" fill="#071a0d" stroke="#ff5d22" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="40" y="558" fill="#ff5d22" font-size="10" font-family="monospace" opacity="0.8">ACTIVE ALERTS</text>
+  <rect x="40" y="568" width="360" height="40" rx="6" fill="#ff5d22" fill-opacity="0.07" stroke="#ff5d22" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="58" y="585" fill="#ff5d22" font-size="10" font-family="monospace">⚠ CO2 above normal threshold</text>
+  <text x="58" y="600" fill="#ff5d22" font-size="8" font-family="monospace" opacity="0.5">18:42 — Sensor #3 — 412 ppm</text>
+  <rect x="40" y="616" width="360" height="40" rx="6" fill="#4f7fd4" fill-opacity="0.05" stroke="#4f7fd4" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="58" y="633" fill="#4f7fd4" font-size="10" font-family="monospace">ℹ Humidity dropping</text>
+  <text x="58" y="648" fill="#4f7fd4" font-size="8" font-family="monospace" opacity="0.5">18:30 — Sensor #2 — Trend ↓</text>
+  <rect x="440" y="533" width="740" height="195" rx="10" fill="#071a0d" stroke="#00e676" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="460" y="558" fill="#00e676" font-size="10" font-family="monospace" opacity="0.8">HUMIDITY — 24H TREND</text>
+  <polyline points="460,700 500,692 540,685 580,672 620,660 660,648 700,655 740,660 780,650 820,644 860,650 900,645 940,642 980,648 1020,650 1060,655 1100,650 1140,645" fill="none" stroke="#4f7fd4" stroke-width="1.5" stroke-opacity="0.75"/>
+  <polyline points="460,700 500,692 540,685 580,672 620,660 660,648 700,655 740,660 780,650 820,644 860,650 900,645 940,642 980,648 1020,650 1060,655 1100,650 1140,645 1140,710 460,710" fill="#4f7fd4" fill-opacity="0.04"/>
+</svg>

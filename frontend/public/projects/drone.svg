@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <linearGradient id="dBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#040a14"/><stop offset="100%" stop-color="#020810"/></linearGradient>
+    <radialGradient id="dGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00e5ff" stop-opacity="0.08"/><stop offset="100%" stop-color="#040a14" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#dBg)"/>
+  <rect width="1200" height="750" fill="url(#dGlow)"/>
+  <!-- Grid -->
+  <line x1="0" y1="187" x2="1200" y2="187" stroke="#00e5ff" stroke-width="0.4" stroke-opacity="0.07"/>
+  <line x1="0" y1="374" x2="1200" y2="374" stroke="#00e5ff" stroke-width="0.4" stroke-opacity="0.07"/>
+  <line x1="0" y1="561" x2="1200" y2="561" stroke="#00e5ff" stroke-width="0.4" stroke-opacity="0.07"/>
+  <line x1="300" y1="0" x2="300" y2="750" stroke="#00e5ff" stroke-width="0.4" stroke-opacity="0.07"/>
+  <line x1="600" y1="0" x2="600" y2="750" stroke="#00e5ff" stroke-width="0.4" stroke-opacity="0.07"/>
+  <line x1="900" y1="0" x2="900" y2="750" stroke="#00e5ff" stroke-width="0.4" stroke-opacity="0.07"/>
+  <!-- Header -->
+  <rect width="1200" height="60" fill="#040c18" stroke="#00e5ff" stroke-width="0.5" stroke-opacity="0.3"/>
+  <text x="24" y="37" fill="#00e5ff" font-size="14" font-weight="bold" font-family="monospace">AUTONOMOUS DRONE — CONTROL SYSTEM</text>
+  <text x="560" y="37" fill="#00e5ff" font-size="10" font-family="monospace" opacity="0.4">MODE: HOVER</text>
+  <text x="740" y="37" fill="#00e5ff" font-size="10" font-family="monospace" opacity="0.4">ALT: 12.4m</text>
+  <text x="900" y="37" fill="#00e5ff" font-size="10" font-family="monospace" opacity="0.4">BAT: 78%</text>
+  <circle cx="1148" cy="30" r="8" fill="#00e5ff" opacity="0.2" stroke="#00e5ff" stroke-width="1" stroke-opacity="0.5"/>
+  <circle cx="1148" cy="30" r="4" fill="#00e5ff" opacity="0.8"/>
+  <text x="1162" y="34" fill="#00e5ff" font-size="9" font-family="monospace" opacity="0.6">ARMED</text>
+  <!-- Drone schematic center -->
+  <g transform="translate(600,375)">
+    <!-- Arms -->
+    <line x1="-130" y1="-130" x2="130" y2="130" stroke="#00e5ff" stroke-width="2" stroke-opacity="0.3"/>
+    <line x1="130" y1="-130" x2="-130" y2="130" stroke="#00e5ff" stroke-width="2" stroke-opacity="0.3"/>
+    <!-- Body -->
+    <rect x="-40" y="-40" width="80" height="80" rx="8" fill="#040c18" stroke="#00e5ff" stroke-width="1.5" stroke-opacity="0.7"/>
+    <rect x="-24" y="-24" width="48" height="48" rx="4" fill="none" stroke="#00e5ff" stroke-width="0.8" stroke-opacity="0.4"/>
+    <circle cx="0" cy="0" r="12" fill="#00e5ff" fill-opacity="0.08" stroke="#00e5ff" stroke-width="1"/>
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="4" fill="#00e5ff" opacity="0.9"/>
+    <!-- Motor circles -->
+    <circle cx="-130" cy="-130" r="34" fill="#040c18" stroke="#00e5ff" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="-130" cy="-130" r="22" fill="none" stroke="#00e5ff" stroke-width="0.6" stroke-dasharray="4 3" stroke-opacity="0.5"/>
+    <circle cx="130" cy="-130" r="34" fill="#040c18" stroke="#00e5ff" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="130" cy="-130" r="22" fill="none" stroke="#00e5ff" stroke-width="0.6" stroke-dasharray="4 3" stroke-opacity="0.5"/>
+    <circle cx="-130" cy="130" r="34" fill="#040c18" stroke="#00e5ff" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="-130" cy="130" r="22" fill="none" stroke="#00e5ff" stroke-width="0.6" stroke-dasharray="4 3" stroke-opacity="0.5"/>
+    <circle cx="130" cy="130" r="34" fill="#040c18" stroke="#00e5ff" stroke-width="1.2" stroke-opacity="0.6"/>
+    <circle cx="130" cy="130" r="22" fill="none" stroke="#00e5ff" stroke-width="0.6" stroke-dasharray="4 3" stroke-opacity="0.5"/>
+    <!-- Radar sweep circle -->
+    <circle cx="0" cy="0" r="195" fill="none" stroke="#00e5ff" stroke-width="0.6" stroke-opacity="0.12"/>
+    <circle cx="0" cy="0" r="230" fill="none" stroke="#00e5ff" stroke-width="0.4" stroke-opacity="0.08"/>
+  </g>
+  <!-- Left telemetry panel -->
+  <rect x="20" y="78" width="220" height="130" rx="8" fill="#040c18" stroke="#00e5ff" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="36" y="100" fill="#00e5ff" font-size="9" font-family="monospace" opacity="0.7">GYROSCOPE</text>
+  <text x="36" y="128" fill="#00e5ff" font-size="22" font-weight="bold" font-family="monospace">X: 0.3°</text>
+  <text x="36" y="152" fill="#00e5ff" font-size="22" font-weight="bold" font-family="monospace">Y: -1.2°</text>
+  <text x="36" y="176" fill="#00e5ff" font-size="22" font-weight="bold" font-family="monospace">Z: 180°</text>
+  <rect x="20" y="224" width="220" height="130" rx="8" fill="#040c18" stroke="#00e5ff" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="36" y="246" fill="#00e5ff" font-size="9" font-family="monospace" opacity="0.7">VELOCITY</text>
+  <text x="36" y="276" fill="white" font-size="26" font-weight="bold" font-family="monospace" opacity="0.8">0.0</text>
+  <text x="100" y="276" fill="white" font-size="12" font-family="monospace" opacity="0.3">m/s</text>
+  <text x="36" y="310" fill="white" font-size="12" font-family="monospace" opacity="0.3">HEADING: 274° W</text>
+  <!-- Right panel -->
+  <rect x="960" y="78" width="220" height="130" rx="8" fill="#040c18" stroke="#00e5ff" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="976" y="100" fill="#00e5ff" font-size="9" font-family="monospace" opacity="0.7">ALTITUDE</text>
+  <text x="976" y="150" fill="#00e5ff" font-size="38" font-weight="bold" font-family="monospace">12.4</text>
+  <text x="976" y="175" fill="#00e5ff" font-size="12" font-family="monospace" opacity="0.5">metres AGL</text>
+  <rect x="960" y="224" width="220" height="130" rx="8" fill="#040c18" stroke="#ff5d22" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="976" y="246" fill="#ff5d22" font-size="9" font-family="monospace" opacity="0.8">BATTERY</text>
+  <!-- Battery bar -->
+  <rect x="976" y="264" width="186" height="22" rx="4" fill="#ff5d22" fill-opacity="0.08" stroke="#ff5d22" stroke-width="1" stroke-opacity="0.3"/>
+  <rect x="978" y="266" width="143" height="18" rx="3" fill="#ff5d22" opacity="0.5"/>
+  <text x="976" y="310" fill="#ff5d22" font-size="20" font-weight="bold" font-family="monospace">78%  12.4V</text>
+  <!-- Bottom panels -->
+  <rect x="20" y="520" width="400" height="210" rx="8" fill="#040c18" stroke="#00e5ff" stroke-width="1" stroke-opacity="0.15"/>
+  <text x="40" y="545" fill="#00e5ff" font-size="9" font-family="monospace" opacity="0.7">FLIGHT PATH</text>
+  <!-- Simple path drawing -->
+  <polyline points="40,700 100,660 160,640 220,610 280,620 340,595 380,580 410,570" fill="none" stroke="#00e5ff" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="5 3"/>
+  <circle cx="410" cy="570" r="5" fill="#00e5ff" opacity="0.8"/>
+  <circle cx="40" cy="700" r="4" fill="#00e5ff" opacity="0.3"/>
+  <rect x="780" y="520" width="400" height="210" rx="8" fill="#040c18" stroke="#00e5ff" stroke-width="1" stroke-opacity="0.15"/>
+  <text x="800" y="545" fill="#00e5ff" font-size="9" font-family="monospace" opacity="0.7">MOTOR RPM</text>
+  <text x="800" y="572" fill="white" font-size="9" font-family="monospace" opacity="0.3">M1</text>
+  <rect x="820" y="560" width="340" height="10" rx="2" fill="#00e5ff" fill-opacity="0.05" stroke="#00e5ff" stroke-width="0.5" stroke-opacity="0.3"/>
+  <rect x="820" y="560" width="265" height="10" rx="2" fill="#00e5ff" opacity="0.4"/>
+  <text x="800" y="602" fill="white" font-size="9" font-family="monospace" opacity="0.3">M2</text>
+  <rect x="820" y="590" width="340" height="10" rx="2" fill="#00e5ff" fill-opacity="0.05" stroke="#00e5ff" stroke-width="0.5" stroke-opacity="0.3"/>
+  <rect x="820" y="590" width="270" height="10" rx="2" fill="#00e5ff" opacity="0.4"/>
+  <text x="800" y="632" fill="white" font-size="9" font-family="monospace" opacity="0.3">M3</text>
+  <rect x="820" y="620" width="340" height="10" rx="2" fill="#00e5ff" fill-opacity="0.05" stroke="#00e5ff" stroke-width="0.5" stroke-opacity="0.3"/>
+  <rect x="820" y="620" width="258" height="10" rx="2" fill="#00e5ff" opacity="0.4"/>
+  <text x="800" y="662" fill="white" font-size="9" font-family="monospace" opacity="0.3">M4</text>
+  <rect x="820" y="650" width="340" height="10" rx="2" fill="#00e5ff" fill-opacity="0.05" stroke="#00e5ff" stroke-width="0.5" stroke-opacity="0.3"/>
+  <rect x="820" y="650" width="275" height="10" rx="2" fill="#00e5ff" opacity="0.4"/>
+</svg>
