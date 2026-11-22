@@ -1,694 +1,562 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import {
-  ArrowUpRight, GraduationCap, Mail, MapPin, Menu,
-  Phone, Rocket, Terminal, X, ExternalLink, Globe
-} from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 import { translations } from '../translations';
 
-/* ─── Social Icons ──────────────────────────────────────────────── */
-const GithubIcon = ({ size = 16, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
+// ── Inline SVG icons ────────────────────────────────────────────────────────
+const GithubIcon = ({ size = 20, className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
   </svg>
 );
 
-const LinkedinIcon = ({ size = 16, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
+const LinkedinIcon = ({ size = 20, className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
   </svg>
 );
 
-/* ─── Static Constants ──────────────────────────────────────────── */
-const contactInfo = {
-  name: 'Sidiahmed Moulay Abass',
-  short: 'Sidiahmed',
-  email: '24110@supnum.mr',
-  phone: '34521001',
-  github: 'https://github.com/SidA7MD',
-  linkedin: 'https://linkedin.com',
-};
+const MenuIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+);
 
-const techStack = [
-  { name: 'HTML5',       logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg' },
-  { name: 'CSS3',        logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg' },
-  { name: 'JavaScript',  logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
-  { name: 'React',       logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
-  { name: 'Node.js',     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
-  { name: 'Express',     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg' },
-  { name: 'PHP',         logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg' },
-  { name: 'Python',      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
-  { name: 'MySQL',       logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' },
-  { name: 'MongoDB',     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
-  { name: 'Prisma',      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg' },
-  { name: 'Flutter',     logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg' },
-  { name: 'Git',         logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
-  { name: 'Docker',      logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
+const CloseIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+);
+
+const ArrowIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+  </svg>
+);
+
+const ExternalIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+  </svg>
+);
+
+// ── Tech logos ────────────────────────────────────────────────────────────────
+const techLogos = [
+  { name: 'React',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'Flutter',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
+  { name: 'Node.js',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+  { name: 'Python',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+  { name: 'MySQL',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+  { name: 'MongoDB',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+  { name: 'Arduino',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg' },
+  { name: 'C++',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
+  { name: 'Prisma',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg' },
+  { name: 'Git',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'Linux',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
 ];
 
-const reveal = {
-  hidden:  { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const stars = [
-  [8,12,2,.8],[15,78,1,.5],[22,32,1,.7],[27,88,2,.9],[34,18,1,.4],[39,66,2,.6],
-  [46,9,1,.8],[52,42,1,.5],[57,92,2,.7],[63,25,1,.9],[68,74,1,.4],[73,14,2,.6],
-  [78,56,1,.8],[83,38,2,.5],[88,82,1,.7],[93,17,1,.4],[96,63,2,.9],[12,52,1,.6],
-  [31,48,1,.3],[71,34,2,.6],[49,70,1,.7],[18,95,1,.5],[42,28,2,.4],[59,8,1,.6],
+const skills = [
+  { name: 'React / Next.js', pct: 90 },
+  { name: 'Node.js / Express', pct: 85 },
+  { name: 'Flutter / Mobile', pct: 80 },
+  { name: 'Python / AI Scripts', pct: 75 },
+  { name: 'MySQL / MongoDB', pct: 85 },
+  { name: 'Arduino / IoT', pct: 70 },
 ];
 
-/* ─── Project Card ──────────────────────────────────────────────── */
-function ProjectCard({ project, index, previewText, isRtl }) {
-  const [hovered, setHovered] = useState(false);
+function SkillBar({ name, pct, animate }) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.08 }}
-      className="project-card-v2 group relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0e1118] flex flex-col"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Image Preview */}
-      <div className="relative overflow-hidden" style={{ height: 220 }}>
-        <img
-          src={project.image}
-          alt={`${project.name} preview`}
-          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-          loading="lazy"
-        />
-        {/* Hover overlay with button */}
-        <div
-          className="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
-          style={{
-            background: `linear-gradient(135deg, ${project.color}25, #00000099)`,
-            opacity: hovered ? 1 : 0,
-          }}
-        >
-          <span
-            className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-white backdrop-blur-md border border-white/20 shadow-lg"
-            style={{ background: `${project.color}35` }}
-          >
-            {previewText} <ExternalLink size={14} className={isRtl ? 'scale-x-[-1]' : ''} />
-          </span>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#0e1118] to-transparent" />
+    <div className="skill-item">
+      <div className="skill-header">
+        <span className="skill-name">{name}</span>
+        <span className="skill-pct">{pct}%</span>
       </div>
-
-      {/* Card Info */}
-      <div className="flex flex-col flex-1 p-6">
-        <div className="flex items-start justify-between mb-3 gap-2">
-          <div>
-            <span
-              className="inline-block text-xs font-bold tracking-wider uppercase mb-1"
-              style={{ color: project.color }}
-            >
-              {project.date} · {project.type}
-            </span>
-            <h3 className="text-xl font-bold text-white">{project.name}</h3>
-          </div>
-          <div
-            className="shrink-0 grid size-9 place-items-center rounded-full border transition-colors duration-300"
-            style={{
-              borderColor: hovered ? project.color : 'rgba(255,255,255,0.1)',
-              color: hovered ? project.color : 'rgba(255,255,255,0.4)',
-            }}
-          >
-            <ArrowUpRight size={16} className={isRtl ? 'scale-x-[-1]' : ''} />
-          </div>
-        </div>
-
-        <p className="text-sm leading-6 text-white/50 flex-1">{project.description}</p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.stack.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-md border px-2.5 py-1 text-xs font-medium transition-colors duration-300"
-              style={{
-                borderColor: hovered ? `${project.color}40` : 'rgba(255,255,255,0.07)',
-                color: hovered ? project.color : 'rgba(255,255,255,0.45)',
-                background: hovered ? `${project.color}0d` : 'rgba(255,255,255,0.02)',
-              }}
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+      <div className="skill-track">
+        <div className="skill-fill" style={{ width: animate ? `${pct}%` : '0%' }} />
       </div>
-    </motion.article>
+    </div>
   );
 }
 
-/* ─── Main Portfolio Component ───────────────────────────────────── */
-export default function Portfolio() {
-  const [lang, setLang] = useState(() => {
-    return localStorage.getItem('portfolio_lang') || 'en';
-  });
-  const [menuOpen, setMenuOpen] = useState(false);
+function ProjectCard({ project, previewLabel }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      className="project-card"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className="project-top">
+        <span className="project-type">{project.type}</span>
+        <span className="project-date">{project.date}</span>
+      </div>
+      <div className={`project-img-wrap${hovered ? ' hovered' : ''}`}>
+        <img src={project.image} alt={project.name} className="project-img" />
+        <div className="project-img-overlay" style={{ background: `${project.color}22` }} />
+      </div>
+      <div className="project-body">
+        <h3 className="project-name" style={{ color: project.color }}>{project.name}</h3>
+        <p className="project-desc">{project.description}</p>
+        <div className="project-stack">
+          {project.stack.map((t) => (
+            <span key={t} className="stack-pill" style={{ borderColor: project.color, color: project.color }}>{t}</span>
+          ))}
+        </div>
+        <div className={`project-cta${hovered ? ' visible' : ''}`}>
+          <span className="project-preview-btn">{previewLabel} <ExternalIcon /></span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-  const t = translations[lang] || translations.en;
-  const isRtl = t.dir === 'rtl';
+export default function Portfolio() {
+  const [lang, setLang] = useState(() => localStorage.getItem('portfolio_lang') || 'en');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [skillsVisible, setSkillsVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  const t = translations[lang];
+  const isRTL = t.dir === 'rtl';
 
   useEffect(() => {
-    document.documentElement.setAttribute('dir', t.dir);
-    document.documentElement.setAttribute('lang', lang);
     localStorage.setItem('portfolio_lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = t.dir;
   }, [lang, t.dir]);
 
-  const handleLanguageChange = (newLang) => {
-    setLang(newLang);
-  };
+  // Lock scroll on body when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
 
-  const handlePointerMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5).toFixed(3);
-    const y = ((e.clientY - rect.top) / rect.height - 0.5).toFixed(3);
-    e.currentTarget.style.setProperty('--mx', x);
-    e.currentTarget.style.setProperty('--my', y);
-  };
+  useEffect(() => {
+    const sections = ['home', 'about', 'stack', 'projects', 'education', 'contact'];
+    const observers = sections.map((id) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { threshold: 0.25 }
+      );
+      obs.observe(el);
+      return obs;
+    });
 
-  const handlePointerLeave = (e) => {
-    e.currentTarget.style.setProperty('--mx', '0');
-    e.currentTarget.style.setProperty('--my', '0');
-  };
+    const skillsEl = document.getElementById('stack');
+    if (skillsEl) {
+      const skillObs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setSkillsVisible(true); },
+        { threshold: 0.15 }
+      );
+      skillObs.observe(skillsEl);
+      observers.push(skillObs);
+    }
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+      setShowBackToTop(window.scrollY > 350);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      observers.forEach((o) => o && o.disconnect());
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
   };
 
-  const navItems = [
-    { label: t.nav.about,     id: 'apropos' },
-    { label: t.nav.stack,     id: 'stack' },
-    { label: t.nav.projects,  id: 'projets' },
-    { label: t.nav.education, id: 'formation' },
+  const homeLabel = lang === 'ar' ? 'الرئيسية' : lang === 'fr' ? 'Accueil' : 'Home';
+  const contactLabel = lang === 'ar' ? 'تواصل' : 'Contact';
+
+  const navLinks = [
+    { id: 'home',      label: homeLabel },
+    { id: 'about',     label: t.nav.about },
+    { id: 'stack',     label: t.nav.stack },
+    { id: 'projects',  label: t.nav.projects },
+    { id: 'education', label: t.nav.education },
+    { id: 'contact',   label: contactLabel },
   ];
 
-  const languages = [
-    { code: 'en', label: 'EN' },
-    { code: 'fr', label: 'FR' },
-    { code: 'ar', label: 'عربي' },
+  const contactInfo = {
+    email: '24110@supnum.mr',
+    github: 'https://github.com/SidA7MD',
+    linkedin: 'https://linkedin.com',
+  };
+
+  const specialties = [
+    {
+      num: '01',
+      title: lang === 'en' ? 'Web Development' : lang === 'fr' ? 'Développement Web' : 'تطوير الويب',
+      desc: lang === 'en'
+        ? 'Full-stack platforms using React, Node.js, and modern databases.'
+        : lang === 'fr'
+        ? 'Plateformes full-stack avec React, Node.js et bases de données modernes.'
+        : 'منصات متكاملة باستخدام React وNode.js وقواعد بيانات حديثة.',
+    },
+    {
+      num: '02',
+      title: lang === 'en' ? 'Mobile Apps' : lang === 'fr' ? 'Apps Mobiles' : 'تطبيقات الجوال',
+      desc: lang === 'en'
+        ? 'Cross-platform apps built with Flutter & React Native.'
+        : lang === 'fr'
+        ? 'Applications multiplateformes avec Flutter & React Native.'
+        : 'تطبيقات جوال متعددة المنصات بـ Flutter وReact Native.',
+    },
+    {
+      num: '03',
+      title: lang === 'en' ? 'IoT & Embedded' : lang === 'fr' ? 'IoT & Embarqué' : 'إنترنت الأشياء',
+      desc: lang === 'en'
+        ? 'Hardware + software systems, drones, sensors, and real-time monitoring.'
+        : lang === 'fr'
+        ? 'Systèmes matériel + logiciel, drones, capteurs et surveillance temps réel.'
+        : 'أنظمة عتاد وبرمجيات، طائرات مسيّرة، حساسات، ومراقبة فورية.',
+    },
   ];
 
   return (
-    <div
-      dir={t.dir}
-      className={`min-h-screen overflow-hidden portfolio-space ${isRtl ? 'rtl-mode' : ''}`}
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
-    >
-      {/* ── 3D Background Canvas ── */}
-      <div className="space-canvas" aria-hidden="true">
-        <div className="grid-3d-wrap">
-          <div className="grid-3d" />
-          <div className="grid-3d-accent" />
-        </div>
-        <div className="space-nebula space-nebula-one" />
-        <div className="space-nebula space-nebula-two" />
-        <div className="star-layer star-layer-far">
-          {stars.map(([l, t, s, o], i) => (
-            <span key={i} className="star" style={{ left:`${l}%`, top:`${t}%`, width:`${s}px`, height:`${s}px`, opacity:o }} />
-          ))}
-        </div>
-        <div className="star-layer star-layer-near">
-          {[12,29,57,76,91].map((l,i) => (
-            <span key={i} className="bright-star" style={{ left:`${l}%`, top:`${[22,68,42,88,55][i]}%`, animationDelay:`${i*0.7}s` }} />
-          ))}
-        </div>
-      </div>
+    <div className={`pf-root${isRTL ? ' rtl' : ''}`}>
 
-      {/* ── Navbar ── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-5 py-4">
-        <div className="mx-auto max-w-6xl h-16 px-4 md:px-7 flex items-center justify-between rounded-2xl border border-white/[0.08] bg-[#0a0d14]/80 backdrop-blur-xl shadow-2xl">
-          {/* Logo */}
-          <button onClick={() => scrollTo('accueil')} className="flex items-center gap-3 text-white font-bold tracking-tight">
-            <span className="grid size-9 place-items-center rounded-lg bg-[#10b981] text-[#11141b]">
-              <Terminal size={18} strokeWidth={2.5} />
-            </span>
-            <span className="hidden sm:block">
-              {contactInfo.short}<span className="text-[#10b981]">.dev</span>
-            </span>
+      {/* ── Sidebar / Drawer ─────────────────────────── */}
+      <aside className={`sidebar${scrolled ? ' scrolled' : ''}${menuOpen ? ' open' : ''}`}>
+        <div className="sidebar-top-bar">
+          <div className="sidebar-logo" onClick={() => scrollTo('home')}>
+            Sidiahmed<span className="logo-dot">.</span>
+          </div>
+          <button
+            className="sidebar-close-btn"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <CloseIcon />
           </button>
-
-          {/* Nav links */}
-          <div className="hidden md:flex items-center gap-7 text-sm text-white/50">
-            {navItems.map(({ label, id }) => (
-              <button key={id} onClick={() => scrollTo(id)} className="nav-link hover:text-white transition-colors">
-                {label}
-              </button>
-            ))}
-          </div>
-
-          {/* Right items: Language Switcher + Contact */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Language Switcher */}
-            <div className="flex items-center rounded-xl border border-white/10 bg-white/[0.04] p-1 gap-1">
-              {languages.map((l) => (
-                <button
-                  key={l.code}
-                  onClick={() => handleLanguageChange(l.code)}
-                  className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-all ${
-                    lang === l.code
-                      ? 'bg-[#10b981] text-[#11141b] shadow-sm'
-                      : 'text-white/50 hover:text-white hover:bg-white/5'
-                  }`}
-                  aria-label={`Switch language to ${l.label}`}
-                >
-                  {l.label}
-                </button>
-              ))}
-            </div>
-
-            <a
-              href={contactInfo.github}
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:grid size-9 place-items-center rounded-lg border border-white/10 text-white/50 hover:text-white hover:border-white/25 transition-colors"
-              aria-label="GitHub profile"
-            >
-              <GithubIcon size={16} />
-            </a>
-
-            <button
-              onClick={() => scrollTo('contact')}
-              className="hidden sm:flex items-center gap-2 rounded-lg bg-[#10b981] px-4 py-2 text-sm font-bold text-[#11141b] hover:bg-[#059669] transition-colors"
-            >
-              {t.nav.hireMe}
-              <ArrowUpRight size={14} className={isRtl ? 'scale-x-[-1]' : ''} />
-            </button>
-
-            {/* Mobile menu toggle */}
-            <button
-              className="md:hidden text-white p-1"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
-            >
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
         </div>
 
-        {/* Mobile dropdown menu */}
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden mx-auto mt-2 max-w-6xl rounded-2xl border border-white/10 bg-[#11151d] p-3 shadow-xl"
-          >
-            {navItems.map(({ label, id }) => (
+        <nav className="sidebar-nav">
+          {navLinks.map((link) => (
+            <button
+              key={link.id}
+              className={`nav-link${activeSection === link.id ? ' active' : ''}`}
+              onClick={() => scrollTo(link.id)}
+            >
+              <span>{link.label}</span>
+              {activeSection === link.id && <ArrowIcon />}
+            </button>
+          ))}
+        </nav>
+
+        <div className="lang-switcher">
+          {['en', 'fr', 'ar'].map((l) => (
+            <button key={l} className={`lang-btn${lang === l ? ' active' : ''}`} onClick={() => setLang(l)}>
+              {l.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
+        <a href={`mailto:${contactInfo.email}`} className="sidebar-email">{contactInfo.email}</a>
+
+        <div className="sidebar-socials">
+          <a href={contactInfo.github} target="_blank" rel="noreferrer" className="social-icon" aria-label="GitHub"><GithubIcon size={18} /></a>
+          <a href={contactInfo.linkedin} target="_blank" rel="noreferrer" className="social-icon" aria-label="LinkedIn"><LinkedinIcon size={18} /></a>
+        </div>
+      </aside>
+
+      {/* ── Mobile header ───────────────────────────── */}
+      <header className={`mobile-header${scrolled ? ' scrolled' : ''}`}>
+        <div className="mobile-header-logo" onClick={() => scrollTo('home')}>
+          Sidiahmed<span className="logo-dot">.</span>
+        </div>
+        <div className="mobile-header-right">
+          <div className="mobile-header-lang">
+            {['en', 'fr', 'ar'].map((l) => (
               <button
-                key={id}
-                onClick={() => scrollTo(id)}
-                className="block w-full rounded-lg px-4 py-3 text-start text-white/70 hover:bg-white/5 hover:text-white transition-colors"
+                key={l}
+                className={`mobile-lang-pill${lang === l ? ' active' : ''}`}
+                onClick={() => setLang(l)}
               >
-                {label}
+                {l.toUpperCase()}
               </button>
             ))}
-            <div className="pt-2 border-t border-white/10 mt-2">
-              <button
-                onClick={() => scrollTo('contact')}
-                className="w-full flex items-center justify-center gap-2 rounded-lg bg-[#10b981] py-2.5 text-sm font-bold text-[#11141b]"
-              >
-                {t.nav.hireMe}
-                <ArrowUpRight size={14} className={isRtl ? 'scale-x-[-1]' : ''} />
+          </div>
+          <button
+            className="menu-toggle"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
+        </div>
+      </header>
+      {menuOpen && <div className="mobile-overlay" onClick={() => setMenuOpen(false)} />}
+
+      {/* ── Main content ─────────────────────────────── */}
+      <main className="pf-main">
+
+        {/* ══ HERO ══════════════════════════════════════ */}
+        <section id="home" className="section hero-section">
+          <span className="section-number-bg" aria-hidden="true">01</span>
+
+          <div className="hero-inner">
+            {/* Developer Avatar with diamond accent shape */}
+            <div className="diamond-wrap">
+              <div className="diamond-bg" />
+              <img src="/avatar.jpg" alt="Sidiahmed Moulay Abass — Developer Avatar" className="diamond-photo" />
+              <div className="avatar-badge">
+                <span className="avatar-status-dot" />
+                <span className="avatar-status-text">
+                  {lang === 'ar' ? 'متاح للمشاريع' : lang === 'fr' ? 'Disponible' : 'Available for work'}
+                </span>
+              </div>
+            </div>
+
+            {/* Text */}
+            <div className="hero-text">
+              <span className="role-label">
+                {lang === 'en' ? 'FULL-STACK & IoT ENGINEER'
+                  : lang === 'fr' ? 'INGÉNIEUR FULL-STACK & IoT'
+                  : 'مهندس برمجيات شامل وإنترنت الأشياء'}
+              </span>
+              <h1 className="hero-name">
+                <span className="name-first">Sidiahmed</span>
+                <span className="name-last">Moulay Abass</span>
+              </h1>
+              <p className="hero-tagline">{t.hero.tagline}</p>
+
+              <div className="hero-actions">
+                <button className="btn-primary" onClick={() => scrollTo('projects')}>
+                  {lang === 'en' ? 'VIEW ALL WORKS' : lang === 'fr' ? 'VOIR MES TRAVAUX' : 'عرض كل الأعمال'}
+                </button>
+                <a href={contactInfo.github} target="_blank" rel="noreferrer" className="btn-outline">
+                  GitHub&nbsp;<GithubIcon size={15} />
+                </a>
+              </div>
+
+              <div className="hero-stats">
+                {t.hero.stats.map((s) => (
+                  <div key={s.label} className="stat-item">
+                    <span className="stat-value">{s.value}</span>
+                    <span className="stat-label">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Specialties */}
+          <div className="specialties-row">
+            {specialties.map((sp) => (
+              <div key={sp.num} className="specialty-col">
+                <span className="sp-num">{sp.num}</span>
+                <h4 className="sp-title">{sp.title}</h4>
+                <p className="sp-desc">{sp.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ══ ABOUT ══════════════════════════════════════ */}
+        <section id="about" className="section about-section">
+          <span className="section-number-bg" aria-hidden="true">02</span>
+          <div className="section-kicker">{t.about.kicker}</div>
+          <h2 className="section-title">{t.about.title}</h2>
+          <div className="about-grid">
+            <div className="about-bio">
+              <p>{t.about.bio}</p>
+              <div className="about-location">
+                <span className="location-dot" />{t.about.location}
+              </div>
+            </div>
+            <div className="about-highlights">
+              {[
+                { n: '15+', l: lang === 'en' ? 'Projects Built' : lang === 'fr' ? 'Projets réalisés' : 'مشروعاً منجزاً' },
+                { n: '3+',  l: lang === 'en' ? 'Years of Coding' : lang === 'fr' ? 'Années de code'   : 'سنوات خبرة' },
+                { n: '14+', l: lang === 'en' ? 'Technologies'    : lang === 'fr' ? 'Technologies'      : 'تقنية' },
+              ].map((h) => (
+                <div key={h.n} className="highlight-card">
+                  <span className="highlight-num">{h.n}</span>
+                  <span className="highlight-label">{h.l}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ══ TECH STACK ═════════════════════════════════ */}
+        <section id="stack" className="section stack-section">
+          <span className="section-number-bg" aria-hidden="true">03</span>
+          <div className="section-kicker">{t.stack.kicker}</div>
+          <h2 className="section-title">{t.stack.title}</h2>
+          <p className="section-subtitle">{t.stack.subtitle}</p>
+
+          <div className="stack-skills-grid">
+            <div className="skills-col">
+              {skills.map((s) => (
+                <SkillBar key={s.name} name={s.name} pct={s.pct} animate={skillsVisible} />
+              ))}
+              <button className="btn-primary view-works-btn" onClick={() => scrollTo('projects')}>
+                {lang === 'en' ? 'VIEW ALL WORKS' : lang === 'fr' ? 'VOIR MES TRAVAUX' : 'عرض الأعمال'}
               </button>
             </div>
-          </motion.div>
-        )}
-      </nav>
-
-      <main>
-        {/* ═══ HERO ════════════════════════════════════════════════ */}
-        <section id="accueil" className="relative min-h-screen px-5 pt-36 pb-24 flex items-center">
-          <div className="hero-orb hero-orb-one" />
-          <div className="hero-orb hero-orb-two" />
-
-          <div className="relative mx-auto max-w-6xl w-full grid lg:grid-cols-[1fr_420px] gap-16 items-center">
-            {/* Left Content */}
-            <motion.div initial="hidden" animate="visible" variants={reveal}>
-              {/* Availability badge */}
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#10b981]/25 bg-[#10b981]/8 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-[#34d399]">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10b981] opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-[#10b981]" />
-                </span>
-                {t.hero.statusBadge}
-              </div>
-
-              {/* Name */}
-              <h1 className="text-[clamp(2.8rem,7vw,6.2rem)] leading-[0.95] font-black tracking-[-0.04em] text-white">
-                {contactInfo.short}
-                <br />
-                <span className="text-outline">{t.hero.titleSuffix}</span>
-              </h1>
-
-              {/* Role */}
-              <div className="mt-6 flex items-center gap-4">
-                <div className="h-px w-10 bg-[#10b981]" />
-                <p className="text-lg md:text-xl font-semibold text-white/65">{t.hero.role}</p>
-              </div>
-
-              <p className="mt-6 max-w-lg text-base md:text-lg leading-8 text-white/45">
-                {t.hero.tagline}
-              </p>
-
-              {/* Metrics */}
-              <div className="mt-10 flex flex-wrap gap-10">
-                {t.hero.stats.map(({ value, label }) => (
-                  <div key={label}>
-                    <p className="text-3xl font-black text-white">{value}</p>
-                    <p className="mt-0.5 text-sm text-white/40">{label}</p>
+            <div className="logos-col">
+              <div className="tech-logos-grid">
+                {techLogos.map((tech) => (
+                  <div key={tech.name} className="tech-logo-item">
+                    <img src={tech.icon} alt={tech.name} className="tech-logo-img" />
+                    <span className="tech-logo-name">{tech.name}</span>
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
 
-              {/* CTAs */}
-              <div className="mt-10 flex flex-wrap gap-3">
-                <button
-                  onClick={() => scrollTo('projets')}
-                  className="group flex items-center gap-2 rounded-xl bg-[#10b981] px-6 py-3.5 font-bold text-[#11141b] shadow-[0_8px_32px_rgba(16,185,129,.25)] hover:bg-[#059669] transition-all"
-                >
-                  {t.hero.viewProjects}
-                  <ArrowUpRight size={16} className={`transition-transform ${isRtl ? 'group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 scale-x-[-1]' : 'group-hover:translate-x-0.5 group-hover:-translate-y-0.5'}`} />
-                </button>
-                <a
-                  href={contactInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 font-bold text-white hover:border-white/25 hover:bg-white/[0.06] transition-all"
-                >
-                  <GithubIcon size={17} /> {t.hero.github}
-                </a>
-                <button
-                  onClick={() => scrollTo('contact')}
-                  className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-6 py-3.5 font-bold text-white hover:border-white/25 transition-all"
-                >
-                  <Mail size={17} /> {t.hero.contact}
-                </button>
-              </div>
-            </motion.div>
+        {/* ══ PROJECTS ═══════════════════════════════════ */}
+        <section id="projects" className="section projects-section">
+          <span className="section-number-bg" aria-hidden="true">04</span>
+          <div className="section-kicker">{t.projects.kicker}</div>
+          <h2 className="section-title">{t.projects.title}</h2>
+          <p className="section-subtitle">{t.projects.subtitle}</p>
 
-            {/* Right — Developer Portrait Showcase Card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.93, rotate: 1.5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 0.85, delay: 0.12 }}
-              className="relative mx-auto lg:mx-0 w-full max-w-[420px]"
-            >
-              <div className="absolute -inset-4 rounded-[2.2rem] border border-[#10b981]/20 bg-gradient-to-tr from-[#10b981]/15 to-transparent rotate-3 blur-sm" />
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0d1119] p-3 shadow-2xl group">
-                {/* Photo container */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.6rem] bg-[#161b24]">
-                  <img
-                    src="/profile.jpg"
-                    alt={contactInfo.name}
-                    className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  {/* Subtle dark vignette & gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1119] via-transparent to-transparent opacity-85" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#0d1119]/50 via-transparent to-transparent opacity-60" />
+          <div className="projects-grid">
+            {t.projects.items.map((p) => (
+              <ProjectCard key={p.name} project={p} previewLabel={t.projects.previewBtn} />
+            ))}
+          </div>
 
-                  {/* Top-corner floating badge */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-[#0d1119]/80 backdrop-blur-md px-3.5 py-1.5 text-[11px] font-bold text-white shadow-lg">
-                      <span className="relative flex size-2">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#10b981] opacity-75" />
-                        <span className="relative inline-flex size-2 rounded-full bg-[#10b981]" />
-                      </span>
-                      <span>{t.hero.statusBadge}</span>
-                    </div>
-                    <div className="grid size-9 place-items-center rounded-full border border-white/15 bg-[#0d1119]/80 backdrop-blur-md text-[#10b981] shadow-lg">
-                      <Rocket size={16} className={isRtl ? 'scale-x-[-1]' : ''} />
-                    </div>
-                  </div>
+          <div className="github-cta">
+            <p className="github-cta-text">{t.projects.githubCta.text}</p>
+            <a href={contactInfo.github} target="_blank" rel="noreferrer" className="btn-primary">
+              {t.projects.githubCta.button}&nbsp;<GithubIcon size={15} />
+            </a>
+          </div>
+        </section>
 
-                  {/* Bottom glassmorphism info card */}
-                  <div className="absolute bottom-4 left-4 right-4 rounded-xl border border-white/10 bg-[#0d1119]/85 backdrop-blur-md p-4 shadow-xl">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-xs font-semibold text-[#10b981]">{t.hero.role}</p>
-                        <p className="text-sm font-bold text-white">{contactInfo.name}</p>
-                      </div>
-                      <div className="text-end">
-                        <p className="text-[10px] uppercase tracking-wider text-white/40">{t.hero.codeCard.locationLabel}</p>
-                        <p className="text-xs font-medium text-white/80">{t.hero.codeCard.locationValue}</p>
-                      </div>
-                    </div>
+        {/* ══ EDUCATION ══════════════════════════════════ */}
+        <section id="education" className="section edu-section">
+          <span className="section-number-bg" aria-hidden="true">05</span>
+          <div className="section-kicker">{t.education.kicker}</div>
+
+          <div className="edu-grid">
+            <div className="edu-col">
+              <h2 className="edu-big-title">
+                {lang === 'en' ? 'Education' : lang === 'fr' ? 'Formation' : 'التعليم'}
+              </h2>
+              <div className="edu-timeline">
+                <div className="edu-entry">
+                  <span className="edu-period">{t.education.period}</span>
+                  <h3 className="edu-degree">{t.education.degree}</h3>
+                  <p className="edu-institution">{t.education.institution}</p>
+                  <p className="edu-desc">{t.education.description}</p>
+                  <div className="edu-topics">
+                    {t.education.topics.map((tp) => (
+                      <span key={tp} className="topic-pill">{tp}</span>
+                    ))}
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ═══ ABOUT ═══════════════════════════════════════════════ */}
-        <section id="apropos" className="px-5 py-24 border-t border-white/[0.05]">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={reveal}
-            className="mx-auto max-w-6xl grid md:grid-cols-[200px_1fr] gap-10 items-start"
-          >
-            <div>
-              <p className="section-kicker">{t.about.kicker}</p>
-              <h2 className="mt-3 text-4xl font-bold tracking-tight">{t.about.title}</h2>
-            </div>
-            <div className="rounded-2xl border border-white/[0.07] bg-[#0e1118] p-8 md:p-10">
-              <p className="text-lg md:text-xl leading-relaxed text-white/70">{t.about.bio}</p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href={`mailto:${contactInfo.email}`}
-                  className="flex items-center gap-2 text-sm text-white/50 hover:text-[#10b981] transition-colors"
-                >
-                  <Mail size={15} /> {contactInfo.email}
-                </a>
-                <span className="flex items-center gap-2 text-sm text-white/50">
-                  <MapPin size={15} /> {t.about.location}
-                </span>
-                <a
-                  href={contactInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
-                >
-                  <GithubIcon size={15} /> {t.hero.github}
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* ═══ TECH STACK ══════════════════════════════════════════ */}
-        <section id="stack" className="px-5 py-24">
-          <div className="mx-auto max-w-6xl">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={reveal} className="mb-12">
-              <p className="section-kicker">{t.stack.kicker}</p>
-              <h2 className="mt-3 text-4xl md:text-5xl font-bold">{t.stack.title}</h2>
-              <p className="mt-4 text-white/40">{t.stack.subtitle}</p>
-            </motion.div>
-
-            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-3">
-              {techStack.map((tech, i) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.04 }}
-                  className="tech-logo-card group flex flex-col items-center gap-2.5 rounded-xl border border-white/[0.07] bg-[#0e1118] p-4 hover:border-[#10b981]/30 hover:bg-[#111520] transition-all duration-250 cursor-default"
-                >
-                  <img
-                    src={tech.logo}
-                    alt={tech.name}
-                    className="h-8 w-8 object-contain transition-transform duration-250 group-hover:scale-110"
-                    loading="lazy"
-                    onError={(e) => { e.target.style.display = 'none'; }}
-                  />
-                  <span className="text-center text-[10px] font-medium text-white/40 group-hover:text-white/70 transition-colors leading-tight">
-                    {tech.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ PROJECTS ════════════════════════════════════════════ */}
-        <section id="projets" className="px-5 py-24 border-t border-white/[0.05]">
-          <div className="mx-auto max-w-6xl">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={reveal} className="mb-12">
-              <p className="section-kicker">{t.projects.kicker}</p>
-              <h2 className="mt-3 text-4xl md:text-5xl font-bold">{t.projects.title}</h2>
-              <p className="mt-4 text-white/40">{t.projects.subtitle}</p>
-            </motion.div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {t.projects.items.map((project, i) => (
-                <ProjectCard
-                  key={project.name}
-                  project={project}
-                  index={i}
-                  previewText={t.projects.previewBtn}
-                  isRtl={isRtl}
-                />
-              ))}
             </div>
 
-            {/* Explore More Callout Banner */}
-            {t.projects.githubCta && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="mt-10 rounded-2xl border border-white/[0.08] bg-[#0e121a]/70 backdrop-blur-sm p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 hover:border-white/15 transition-colors"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="size-12 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center shrink-0 text-[#10b981]">
-                    <GithubIcon size={22} />
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold text-white mb-1">GitHub</h4>
-                    <p className="text-sm text-white/50 max-w-xl leading-relaxed">{t.projects.githubCta.text}</p>
-                  </div>
-                </div>
-                <a
-                  href={contactInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="shrink-0 flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 font-bold text-sm text-white hover:border-[#10b981]/40 hover:bg-[#10b981]/10 transition-all"
-                >
-                  {t.projects.githubCta.button}
-                  <ArrowUpRight size={15} className={isRtl ? 'scale-x-[-1]' : ''} />
-                </a>
-              </motion.div>
-            )}
-          </div>
-        </section>
-
-        {/* ═══ EDUCATION ═══════════════════════════════════════════ */}
-        <section id="formation" className="px-5 py-24">
-          <div className="mx-auto max-w-6xl grid md:grid-cols-[200px_1fr] gap-10">
-            <div>
-              <p className="section-kicker">{t.education.kicker}</p>
-              <h2 className="mt-3 text-4xl font-bold">{t.education.title}</h2>
-            </div>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={reveal}
-              className="relative rounded-2xl border border-white/[0.07] bg-[#0e1118] p-8 md:p-10 overflow-hidden"
-            >
-              {/* Accent bar */}
-              <div className={`absolute top-8 h-20 w-1 ${isRtl ? 'right-0 rounded-l' : 'left-0 rounded-r'} bg-[#10b981]`} />
-              <div className="absolute right-0 top-0 w-48 h-48 bg-[#10b981] opacity-5 blur-[60px] rounded-full pointer-events-none" />
-
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
-                <div>
-                  <div className="mb-5 grid size-12 place-items-center rounded-xl bg-[#10b981]/10 text-[#34d399]">
-                    <GraduationCap size={24} />
-                  </div>
-                  <h3 className="text-2xl font-bold">{t.education.degree}</h3>
-                  <p className="mt-2 font-semibold text-[#10b981]">{t.education.institution}</p>
-                </div>
-                <span className="shrink-0 rounded-full border border-white/10 px-4 py-2 text-sm text-white/40">
-                  {t.education.period}
-                </span>
-              </div>
-
-              <p className="mt-7 leading-7 text-white/50">
-                {t.education.description}
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-2">
-                {t.education.topics.map((s) => (
-                  <span key={s} className="rounded-md border border-white/[0.07] bg-white/[0.03] px-3 py-1.5 text-sm text-white/45">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ═══ CONTACT ═════════════════════════════════════════════ */}
-        <section id="contact" className="px-5 py-24 border-t border-white/[0.05]">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={reveal} className="mx-auto max-w-6xl">
-            <div className="rounded-2xl bg-[#10b981] p-10 md:p-14 overflow-hidden relative">
-              <div
-                className="absolute inset-0 opacity-10"
-                style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'1\'/%3E%3C/svg%3E")' }}
-              />
-              <div className="relative flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
-                <div>
-                  <p className="text-sm font-black uppercase tracking-[0.2em] opacity-60">{t.contact.kicker}</p>
-                  <h2 className="mt-4 max-w-xl text-4xl md:text-5xl font-black tracking-tight text-[#11141b]">
-                    {t.contact.title}
-                  </h2>
-                  <p className="mt-4 text-[#11141b] opacity-65 max-w-md">
-                    {t.contact.subtitle}
+            <div className="edu-col">
+              <h2 className="edu-big-title">
+                {lang === 'en' ? 'Experiences' : lang === 'fr' ? 'Expériences' : 'الخبرات'}
+              </h2>
+              <div className="edu-timeline">
+                <div className="edu-entry">
+                  <span className="edu-period">2025 – {lang === 'en' ? 'Present' : lang === 'fr' ? 'Présent' : 'الحاضر'}</span>
+                  <h3 className="edu-degree">
+                    {lang === 'en' ? 'Freelance Full-Stack Developer'
+                      : lang === 'fr' ? 'Développeur Full-Stack Freelance'
+                      : 'مطوّر مستقل شامل'}
+                  </h3>
+                  <p className="edu-institution">Self-employed</p>
+                  <p className="edu-desc">
+                    {lang === 'en'
+                      ? 'Building web and mobile platforms for local clients — e-learning, charity, and attendance management systems.'
+                      : lang === 'fr'
+                      ? "Développement de plateformes web et mobiles pour clients locaux — systèmes d'e-learning, caritatifs et de gestion des présences."
+                      : 'تطوير منصات ويب وجوال للعملاء المحليين — أنظمة تعليمية وخيرية وإدارة حضور.'}
                   </p>
                 </div>
-                <div className="flex flex-col gap-3 min-w-[280px]">
-                  <a
-                    href={`mailto:${contactInfo.email}`}
-                    className="flex items-center gap-3 rounded-xl bg-[#11141b] px-5 py-4 font-bold text-white hover:bg-[#1a1f2b] transition-colors"
-                  >
-                    <Mail size={18} /> {contactInfo.email}
-                  </a>
-                  <a
-                    href={`tel:+222${contactInfo.phone}`}
-                    className="flex items-center gap-3 rounded-xl bg-[#11141b]/20 px-5 py-4 font-bold text-[#11141b] hover:bg-[#11141b]/30 transition-colors"
-                  >
-                    <Phone size={18} /> +222 {contactInfo.phone}
-                  </a>
-                  <div className="flex gap-3">
-                    <a
-                      href={contactInfo.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#11141b]/20 px-4 py-3 font-bold text-[#11141b] hover:bg-[#11141b]/30 transition-colors text-sm"
-                    >
-                      <GithubIcon size={16} /> {t.contact.github}
-                    </a>
-                    <a
-                      href={contactInfo.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#11141b]/20 px-4 py-3 font-bold text-[#11141b] hover:bg-[#11141b]/30 transition-colors text-sm"
-                    >
-                      <LinkedinIcon size={16} /> {t.contact.linkedin}
-                    </a>
-                  </div>
+                <div className="edu-entry">
+                  <span className="edu-period">2024 – 2025</span>
+                  <h3 className="edu-degree">
+                    {lang === 'en' ? 'IoT & Robotics Engineer (Academic)'
+                      : lang === 'fr' ? 'Ingénieur IoT & Robotique (Académique)'
+                      : 'مهندس IoT وروبوتيكا (أكاديمي)'}
+                  </h3>
+                  <p className="edu-institution">SupNum — Nouakchott</p>
+                  <p className="edu-desc">
+                    {lang === 'en'
+                      ? 'Designed and built autonomous drone hardware, sensor networks, and real-time environmental monitoring stations.'
+                      : lang === 'fr'
+                      ? "Conception et réalisation de drones autonomes, réseaux de capteurs et stations de surveillance environnementale temps réel."
+                      : 'تصميم وبناء طائرات مسيّرة ذاتية، شبكات حساسات ومحطات رصد بيئي فوري.'}
+                  </p>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </section>
-      </main>
 
-      {/* ── Footer ── */}
-      <footer className="px-5 py-10 border-t border-white/[0.04]">
-        <div className="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/30">
-          <p>© {new Date().getFullYear()} {contactInfo.name}. {t.footer.rights}</p>
-          <div className="flex items-center gap-5">
-            <span className="flex items-center gap-2"><MapPin size={13} /> {t.footer.location}</span>
-            <a href={contactInfo.github} target="_blank" rel="noreferrer" className="hover:text-white transition-colors" aria-label="GitHub">
-              <GithubIcon size={16} />
+        {/* ══ CONTACT ════════════════════════════════════ */}
+        <section id="contact" className="section contact-section">
+          <span className="section-number-bg" aria-hidden="true">06</span>
+          <div className="section-kicker">{t.contact.kicker}</div>
+          <h2 className="contact-title">{t.contact.title}</h2>
+          <p className="contact-sub">{t.contact.subtitle}</p>
+
+          <div className="contact-cards">
+            <a href={`mailto:${contactInfo.email}`} className="contact-card">
+              <span className="contact-card-label">Email</span>
+              <span className="contact-card-value">{contactInfo.email}</span>
             </a>
-            <a href={contactInfo.linkedin} target="_blank" rel="noreferrer" className="hover:text-white transition-colors" aria-label="LinkedIn">
-              <LinkedinIcon size={16} />
+            <a href={contactInfo.github} target="_blank" rel="noreferrer" className="contact-card">
+              <span className="contact-card-label">GitHub</span>
+              <span className="contact-card-value">github.com/SidA7MD</span>
             </a>
           </div>
-        </div>
-      </footer>
+
+          <div className="contact-cta-row">
+            <a href={`mailto:${contactInfo.email}`} className="btn-primary large">
+              {lang === 'en' ? "Let's Talk" : lang === 'fr' ? 'Discutons' : 'تواصل معي'}
+            </a>
+            <a href={contactInfo.linkedin} target="_blank" rel="noreferrer" className="btn-outline">
+              <LinkedinIcon size={15} />&nbsp;LinkedIn
+            </a>
+          </div>
+        </section>
+
+        {/* ── Footer ──────────────────────────────────── */}
+        <footer className="pf-footer">
+          <span>© {new Date().getFullYear()} Sidiahmed Moulay Abass · {t.footer.rights}</span>
+          <span>{t.footer.location}</span>
+        </footer>
+      </main>
+
+      {/* ── Floating Back to Top Button ──────────────── */}
+      <button
+        className={`back-to-top-btn${showBackToTop ? ' visible' : ''}`}
+        onClick={() => scrollTo('home')}
+        aria-label="Back to top"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="18 15 12 9 6 15" />
+        </svg>
+      </button>
     </div>
   );
 }
