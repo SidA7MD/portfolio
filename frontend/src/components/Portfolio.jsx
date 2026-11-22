@@ -311,12 +311,15 @@ export default function Portfolio() {
           <span className="section-number-bg" aria-hidden="true">01</span>
 
           <div className="hero-inner">
-            {/* Developer Avatar with diamond accent shape */}
+            {/* Portrait with diamond accent shape */}
             <div className="diamond-wrap">
               <div className="diamond-bg" />
-              <img src="/avatar.jpg" alt="Sidiahmed Moulay Abass — Developer Avatar" className="diamond-photo" />
+              <img src="/profile.jpg" alt="Sidiahmed Moulay Abass" className="diamond-photo" />
               <div className="avatar-badge">
-                <span className="avatar-status-dot" />
+                <span className="avatar-status-dot-wrap">
+                  <span className="avatar-status-ping" />
+                  <span className="avatar-status-dot" />
+                </span>
                 <span className="avatar-status-text">
                   {lang === 'ar' ? 'متاح للمشاريع' : lang === 'fr' ? 'Disponible' : 'Available for work'}
                 </span>
