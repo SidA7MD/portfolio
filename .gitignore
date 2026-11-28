@@ -3,3 +3,6 @@ dist/
 .env
 .env.local
 .DS_Store
+
+# Draft READMEs for other GitHub repos (not part of the site)
+readme-drafts/

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <!-- Illustrative mock-up of the MEKTEBY ERP dashboard (not a real screenshot) -->
+  <defs>
+    <linearGradient id="kBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d1117"/><stop offset="100%" stop-color="#0a0d14"/></linearGradient>
+    <linearGradient id="kArea" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#kBg)"/>
+
+  <!-- Sidebar -->
+  <rect width="220" height="750" fill="#161b22"/>
+  <line x1="220" y1="0" x2="220" y2="750" stroke="#30363d"/>
+  <rect x="20" y="18" width="42" height="42" rx="10" fill="#10b981"/>
+  <text x="41" y="46" text-anchor="middle" fill="white" font-size="20" font-weight="bold" font-family="monospace">M</text>
+  <text x="73" y="35" fill="white" font-size="13" font-weight="700" font-family="Arial,sans-serif" opacity="0.9">MEKTEBY</text>
+  <text x="73" y="52" fill="#10b981" font-size="10" font-family="Arial,sans-serif">Business ERP</text>
+  <!-- Nav: Dashboard (active), Company, Products, Stock, Parties, Finance -->
+  <rect x="12" y="84" width="196" height="40" rx="8" fill="#10b981" opacity="0.12"/>
+  <text x="52" y="109" fill="#10b981" font-size="13" font-family="Arial,sans-serif" font-weight="700">Dashboard</text>
+  <text x="52" y="152" fill="white" opacity="0.45" font-size="13" font-family="Arial,sans-serif">Company</text>
+  <text x="52" y="188" fill="white" opacity="0.45" font-size="13" font-family="Arial,sans-serif">Products</text>
+  <text x="52" y="224" fill="white" opacity="0.45" font-size="13" font-family="Arial,sans-serif">Stock</text>
+  <text x="52" y="260" fill="white" opacity="0.45" font-size="13" font-family="Arial,sans-serif">Parties</text>
+  <text x="52" y="296" fill="white" opacity="0.45" font-size="13" font-family="Arial,sans-serif">Finance</text>
+  <rect x="24" y="98" width="14" height="14" rx="3" fill="#10b981" opacity="0.8"/>
+  <rect x="24" y="141" width="14" height="14" rx="3" fill="white" opacity="0.2"/>
+  <rect x="24" y="177" width="14" height="14" rx="3" fill="white" opacity="0.2"/>
+  <rect x="24" y="213" width="14" height="14" rx="3" fill="white" opacity="0.2"/>
+  <rect x="24" y="249" width="14" height="14" rx="3" fill="white" opacity="0.2"/>
+  <rect x="24" y="285" width="14" height="14" rx="3" fill="white" opacity="0.2"/>
+  <line x1="12" y1="320" x2="208" y2="320" stroke="#30363d"/>
+  <!-- Language switch -->
+  <rect x="24" y="340" width="40" height="24" rx="6" fill="#10b981" opacity="0.25"/>
+  <text x="44" y="356" text-anchor="middle" fill="#10b981" font-size="10" font-family="Arial,sans-serif" font-weight="700">FR</text>
+  <rect x="70" y="340" width="40" height="24" rx="6" fill="none" stroke="#30363d"/>
+  <text x="90" y="356" text-anchor="middle" fill="white" opacity="0.5" font-size="10" font-family="Arial,sans-serif">AR</text>
+  <rect x="116" y="340" width="40" height="24" rx="6" fill="none" stroke="#30363d"/>
+  <text x="136" y="356" text-anchor="middle" fill="white" opacity="0.5" font-size="10" font-family="Arial,sans-serif">EN</text>
+  <circle cx="34" cy="716" r="18" fill="#10b981" opacity="0.25"/>
+  <rect x="60" y="707" width="80" height="10" rx="2" fill="white" opacity="0.4"/>
+  <rect x="60" y="723" width="55" height="8" rx="2" fill="white" opacity="0.2"/>
+
+  <!-- Top bar: branch selector -->
+  <rect x="220" y="0" width="980" height="62" fill="#0d1117"/>
+  <line x1="220" y1="62" x2="1200" y2="62" stroke="#30363d"/>
+  <rect x="240" y="17" width="220" height="28" rx="7" fill="#161b22" stroke="#30363d"/>
+  <text x="254" y="36" fill="white" opacity="0.6" font-size="12" font-family="Arial,sans-serif">Branch: Nouakchott Centre ▾</text>
+  <circle cx="1148" cy="31" r="20" fill="#10b981" opacity="0.3"/>
+
+  <!-- KPI cards -->
+  <g font-family="Arial,sans-serif">
+    <rect x="240" y="84" width="220" height="104" rx="12" fill="#161b22" stroke="#30363d"/>
+    <text x="260" y="114" fill="white" opacity="0.5" font-size="12">Revenue (month)</text>
+    <rect x="260" y="130" width="130" height="22" rx="4" fill="white" opacity="0.85"/>
+    <rect x="260" y="164" width="60" height="10" rx="3" fill="#10b981" opacity="0.8"/>
+
+    <rect x="480" y="84" width="220" height="104" rx="12" fill="#161b22" stroke="#30363d"/>
+    <text x="500" y="114" fill="white" opacity="0.5" font-size="12">Products in stock</text>
+    <rect x="500" y="130" width="90" height="22" rx="4" fill="white" opacity="0.85"/>
+    <rect x="500" y="164" width="70" height="10" rx="3" fill="white" opacity="0.25"/>
+
+    <rect x="720" y="84" width="220" height="104" rx="12" fill="#161b22" stroke="#30363d"/>
+    <text x="740" y="114" fill="white" opacity="0.5" font-size="12">Low stock alerts</text>
+    <rect x="740" y="130" width="40" height="22" rx="4" fill="#f59e0b" opacity="0.85"/>
+    <rect x="740" y="164" width="80" height="10" rx="3" fill="white" opacity="0.25"/>
+
+    <rect x="960" y="84" width="220" height="104" rx="12" fill="#161b22" stroke="#30363d"/>
+    <text x="980" y="114" fill="white" opacity="0.5" font-size="12">Customers</text>
+    <rect x="980" y="130" width="70" height="22" rx="4" fill="white" opacity="0.85"/>
+    <rect x="980" y="164" width="50" height="10" rx="3" fill="#10b981" opacity="0.8"/>
+  </g>
+
+  <!-- Finance chart -->
+  <rect x="240" y="208" width="580" height="300" rx="12" fill="#161b22" stroke="#30363d"/>
+  <text x="260" y="238" fill="white" opacity="0.8" font-size="14" font-weight="700" font-family="Arial,sans-serif">Income vs. expenses</text>
+  <g stroke="#30363d">
+    <line x1="260" y1="290" x2="800" y2="290"/><line x1="260" y1="350" x2="800" y2="350"/>
+    <line x1="260" y1="410" x2="800" y2="410"/><line x1="260" y1="470" x2="800" y2="470"/>
+  </g>
+  <path d="M260 430 L330 410 L400 420 L470 380 L540 360 L610 370 L680 320 L750 300 L800 290 L800 480 L260 480 Z" fill="url(#kArea)"/>
+  <polyline points="260,430 330,410 400,420 470,380 540,360 610,370 680,320 750,300 800,290" fill="none" stroke="#10b981" stroke-width="3"/>
+  <polyline points="260,450 330,445 400,440 470,438 540,425 610,430 680,415 750,410 800,405" fill="none" stroke="#4f7fd4" stroke-width="2.5" stroke-dasharray="6 5"/>
+
+  <!-- Stock movements table -->
+  <rect x="840" y="208" width="340" height="300" rx="12" fill="#161b22" stroke="#30363d"/>
+  <text x="860" y="238" fill="white" opacity="0.8" font-size="14" font-weight="700" font-family="Arial,sans-serif">Stock movements</text>
+  <g>
+    <rect x="860" y="258" width="300" height="1" fill="#30363d"/>
+    <rect x="860" y="274" width="110" height="10" rx="2" fill="white" opacity="0.35"/><rect x="1100" y="270" width="44" height="18" rx="9" fill="#10b981" opacity="0.25"/>
+    <rect x="860" y="304" width="300" height="1" fill="#30363d"/>
+    <rect x="860" y="320" width="140" height="10" rx="2" fill="white" opacity="0.35"/><rect x="1100" y="316" width="44" height="18" rx="9" fill="#f59e0b" opacity="0.25"/>
+    <rect x="860" y="350" width="300" height="1" fill="#30363d"/>
+    <rect x="860" y="366" width="90" height="10" rx="2" fill="white" opacity="0.35"/><rect x="1100" y="362" width="44" height="18" rx="9" fill="#10b981" opacity="0.25"/>
+    <rect x="860" y="396" width="300" height="1" fill="#30363d"/>
+    <rect x="860" y="412" width="125" height="10" rx="2" fill="white" opacity="0.35"/><rect x="1100" y="408" width="44" height="18" rx="9" fill="#4f7fd4" opacity="0.3"/>
+    <rect x="860" y="442" width="300" height="1" fill="#30363d"/>
+    <rect x="860" y="458" width="100" height="10" rx="2" fill="white" opacity="0.35"/><rect x="1100" y="454" width="44" height="18" rx="9" fill="#10b981" opacity="0.25"/>
+  </g>
+
+  <!-- Products list -->
+  <rect x="240" y="528" width="940" height="200" rx="12" fill="#161b22" stroke="#30363d"/>
+  <text x="260" y="558" fill="white" opacity="0.8" font-size="14" font-weight="700" font-family="Arial,sans-serif">Products</text>
+  <rect x="1060" y="540" width="100" height="28" rx="7" fill="#10b981"/>
+  <text x="1110" y="559" text-anchor="middle" fill="white" font-size="12" font-weight="700" font-family="Arial,sans-serif">+ New</text>
+  <g>
+    <rect x="260" y="584" width="900" height="1" fill="#30363d"/>
+    <rect x="260" y="598" width="36" height="36" rx="6" fill="#4f7fd4" opacity="0.35"/><rect x="310" y="604" width="160" height="10" rx="2" fill="white" opacity="0.45"/><rect x="310" y="620" width="90" height="8" rx="2" fill="white" opacity="0.2"/><rect x="700" y="610" width="70" height="10" rx="2" fill="white" opacity="0.3"/><rect x="1060" y="606" width="80" height="18" rx="9" fill="#10b981" opacity="0.25"/>
+    <rect x="260" y="648" width="900" height="1" fill="#30363d"/>
+    <rect x="260" y="662" width="36" height="36" rx="6" fill="#10b981" opacity="0.35"/><rect x="310" y="668" width="130" height="10" rx="2" fill="white" opacity="0.45"/><rect x="310" y="684" width="110" height="8" rx="2" fill="white" opacity="0.2"/><rect x="700" y="674" width="55" height="10" rx="2" fill="white" opacity="0.3"/><rect x="1060" y="670" width="80" height="18" rx="9" fill="#f59e0b" opacity="0.25"/>
+  </g>
+</svg>

@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { translations } from '../translations';
+import { mainStack, stackGroups, iconUrl } from '../stack';
 
 // ── Inline SVG icons ────────────────────────────────────────────────────────
 const GithubIcon = ({ size = 20, className = '' }) => (
@@ -32,83 +33,60 @@ const ArrowIcon = () => (
   </svg>
 );
 
-const ExternalIcon = ({ size = 14 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-  </svg>
-);
-
-// ── Tech logos ────────────────────────────────────────────────────────────────
-const techLogos = [
-  { name: 'React',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-  { name: 'Flutter',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
-  { name: 'Node.js',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
-  { name: 'Python',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
-  { name: 'MySQL',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-  { name: 'MongoDB',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-  { name: 'Arduino',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg' },
-  { name: 'C++',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
-  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
-  { name: 'Prisma',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg' },
-  { name: 'Git',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-  { name: 'Linux',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
-];
-
-const skills = [
-  { name: 'React / Next.js', pct: 90 },
-  { name: 'Node.js / Express', pct: 85 },
-  { name: 'Flutter / Mobile', pct: 80 },
-  { name: 'Python / AI Scripts', pct: 75 },
-  { name: 'MySQL / MongoDB', pct: 85 },
-  { name: 'Arduino / IoT', pct: 70 },
-];
-
-function SkillBar({ name, pct, animate }) {
+function TechTag({ item, lang }) {
+  const text = item.label ? item.label[lang] : item.name;
   return (
-    <div className="skill-item">
-      <div className="skill-header">
-        <span className="skill-name">{name}</span>
-        <span className="skill-pct">{pct}%</span>
-      </div>
-      <div className="skill-track">
-        <div className="skill-fill" style={{ width: animate ? `${pct}%` : '0%' }} />
-      </div>
-    </div>
+    <li className={`tech-tag${item.core ? ' core' : ''}`}>
+      {item.icon && <img src={iconUrl(item.icon)} alt="" className="tech-tag-icon" loading="lazy" />}
+      <span dir="auto">{text}</span>
+    </li>
   );
 }
 
-function ProjectCard({ project, previewLabel }) {
-  const [hovered, setHovered] = useState(false);
+// Public links per project, keyed by its image (same in every language).
+// GitHub redirects renamed repositories, so these keep working after a rename.
+const PROJECT_LINKS = {
+  '/projects/mekteby.svg':      { code: 'https://github.com/SidA7MD/MEKTEBY' },
+  '/projects/khbarwilli.svg':   { code: 'https://github.com/SidA7MD/PI' },
+  '/projects/ihsan.svg':        { code: 'https://github.com/SidA7MD/Defi2' },
+  '/projects/surveillance.svg': { code: 'https://github.com/SidA7MD/iset', live: 'https://iset-three.vercel.app' },
+};
+
+function ProjectCard({ project, labels }) {
+  const links = PROJECT_LINKS[project.image] || {};
   return (
-    <div
-      className="project-card"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <article className="project-card">
       <div className="project-top">
         <span className="project-type">{project.type}</span>
         <span className="project-date">{project.date}</span>
       </div>
-      <div className={`project-img-wrap${hovered ? ' hovered' : ''}`}>
-        <img src={project.image} alt={project.name} className="project-img" />
-        <div className="project-img-overlay" style={{ background: `${project.color}22` }} />
+      <div className="project-img-wrap">
+        <img src={project.image} alt="" className="project-img" loading="lazy" />
       </div>
       <div className="project-body">
-        <h3 className="project-name" style={{ color: project.color }}>{project.name}</h3>
+        <h3 className="project-name">{project.name}</h3>
         <p className="project-desc">{project.description}</p>
-        <div className="project-stack">
+        <ul className="project-stack">
           {project.stack.map((t) => (
-            <span key={t} className="stack-pill" style={{ borderColor: project.color, color: project.color }}>{t}</span>
+            <li key={t} className="stack-pill">{t}</li>
           ))}
-        </div>
-        <div className={`project-cta${hovered ? ' visible' : ''}`}>
-          <span className="project-preview-btn">{previewLabel} <ExternalIcon /></span>
-        </div>
+        </ul>
+        {(links.code || links.live) && (
+          <div className="project-links">
+            {links.live && (
+              <a href={links.live} target="_blank" rel="noreferrer" className="project-link project-link-live">
+                {labels.liveLabel}
+              </a>
+            )}
+            {links.code && (
+              <a href={links.code} target="_blank" rel="noreferrer" className="project-link">
+                <GithubIcon size={14} /> {labels.codeLabel}
+              </a>
+            )}
+          </div>
+        )}
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -116,7 +94,6 @@ export default function Portfolio() {
   const [lang, setLang] = useState(() => localStorage.getItem('portfolio_lang') || 'en');
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [skillsVisible, setSkillsVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -143,35 +120,26 @@ export default function Portfolio() {
 
   useEffect(() => {
     const sections = ['home', 'about', 'stack', 'projects', 'education', 'contact'];
-    const observers = sections.map((id) => {
-      const el = document.getElementById(id);
-      if (!el) return null;
-      const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
-        { threshold: 0.25 }
-      );
-      obs.observe(el);
-      return obs;
-    });
-
-    const skillsEl = document.getElementById('stack');
-    if (skillsEl) {
-      const skillObs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setSkillsVisible(true); },
-        { threshold: 0.15 }
-      );
-      skillObs.observe(skillsEl);
-      observers.push(skillObs);
-    }
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
       setShowBackToTop(window.scrollY > 350);
+      // Active section = the last one whose top has passed 40% of the screen height.
+      // At the very bottom of the page, the last section wins even if it is short.
+      const line = window.innerHeight * 0.4;
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      let current = sections[0];
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      });
+      setActiveSection(atBottom ? sections[sections.length - 1] : current);
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
     return () => {
-      observers.forEach((o) => o && o.disconnect());
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
@@ -234,7 +202,7 @@ export default function Portfolio() {
       {/* ── Sidebar / Drawer ─────────────────────────── */}
       <aside className={`sidebar${scrolled ? ' scrolled' : ''}${menuOpen ? ' open' : ''}`}>
         <div className="sidebar-top-bar">
-          <div className="sidebar-logo" onClick={() => scrollTo('home')}>
+          <div className="sidebar-logo" dir="ltr" onClick={() => scrollTo('home')}>
             Sidiahmed<span className="logo-dot">.</span>
           </div>
           <button
@@ -267,7 +235,7 @@ export default function Portfolio() {
           ))}
         </div>
 
-        <a href={`mailto:${contactInfo.email}`} className="sidebar-email">{contactInfo.email}</a>
+        <a href={`mailto:${contactInfo.email}`} className="sidebar-email" dir="ltr">{contactInfo.email}</a>
 
         <div className="sidebar-socials">
           <a href={contactInfo.github} target="_blank" rel="noreferrer" className="social-icon" aria-label="GitHub"><GithubIcon size={18} /></a>
@@ -277,7 +245,7 @@ export default function Portfolio() {
 
       {/* ── Mobile header ───────────────────────────── */}
       <header className={`mobile-header${scrolled ? ' scrolled' : ''}`}>
-        <div className="mobile-header-logo" onClick={() => scrollTo('home')}>
+        <div className="mobile-header-logo" dir="ltr" onClick={() => scrollTo('home')}>
           Sidiahmed<span className="logo-dot">.</span>
         </div>
         <div className="mobile-header-right">
@@ -385,9 +353,9 @@ export default function Portfolio() {
             </div>
             <div className="about-highlights">
               {[
-                { n: '15+', l: lang === 'en' ? 'Projects Built' : lang === 'fr' ? 'Projets réalisés' : 'مشروعاً منجزاً' },
-                { n: '3+',  l: lang === 'en' ? 'Years of Coding' : lang === 'fr' ? 'Années de code'   : 'سنوات خبرة' },
-                { n: '14+', l: lang === 'en' ? 'Technologies'    : lang === 'fr' ? 'Technologies'      : 'تقنية' },
+                { n: 'L3', l: lang === 'en' ? 'Third year of Computer Science at SupNum' : lang === 'fr' ? 'Licence 3 en informatique à SupNum' : 'السنة الثالثة في علوم الحاسوب بـ SupNum' },
+                { n: '3',  l: lang === 'en' ? 'Languages: Arabic, French, English' : lang === 'fr' ? 'Langues : arabe, français, anglais' : 'لغات: العربية، الفرنسية، الإنجليزية' },
+                { n: String(t.projects.items.length), l: lang === 'en' ? 'Featured projects, from web apps to drones' : lang === 'fr' ? 'Projets présentés, du web aux drones' : 'مشاريع مختارة، من الويب إلى الطائرات المسيّرة' },
               ].map((h) => (
                 <div key={h.n} className="highlight-card">
                   <span className="highlight-num">{h.n}</span>
@@ -405,25 +373,30 @@ export default function Portfolio() {
           <h2 className="section-title">{t.stack.title}</h2>
           <p className="section-subtitle">{t.stack.subtitle}</p>
 
-          <div className="stack-skills-grid">
-            <div className="skills-col">
-              {skills.map((s) => (
-                <SkillBar key={s.name} name={s.name} pct={s.pct} animate={skillsVisible} />
+          <div className="main-stack">
+            <p className="main-stack-label">{t.stack.mainLabel}</p>
+            <ul className="main-stack-list">
+              {mainStack.map((m) => (
+                <li key={m.name} className="main-stack-item">
+                  <img src={iconUrl(m.icon)} alt="" className="main-stack-icon" />
+                  <span>{m.name}</span>
+                </li>
               ))}
-              <button className="btn-primary view-works-btn" onClick={() => scrollTo('projects')}>
-                {lang === 'en' ? 'VIEW ALL WORKS' : lang === 'fr' ? 'VOIR MES TRAVAUX' : 'عرض الأعمال'}
-              </button>
-            </div>
-            <div className="logos-col">
-              <div className="tech-logos-grid">
-                {techLogos.map((tech) => (
-                  <div key={tech.name} className="tech-logo-item">
-                    <img src={tech.icon} alt={tech.name} className="tech-logo-img" />
-                    <span className="tech-logo-name">{tech.name}</span>
-                  </div>
-                ))}
+            </ul>
+          </div>
+
+          <div className="stack-groups">
+            {stackGroups.map((g) => (
+              <div key={g.id} className="stack-group">
+                <h3 className="stack-group-title">{g.title[lang]}</h3>
+                <p className="stack-group-desc">{g.desc[lang]}</p>
+                <ul className="tech-tags">
+                  {[...g.items].sort((x, y) => Number(!!y.core) - Number(!!x.core)).map((it) => (
+                    <TechTag key={it.name || it.label.en} item={it} lang={lang} />
+                  ))}
+                </ul>
               </div>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -436,7 +409,7 @@ export default function Portfolio() {
 
           <div className="projects-grid">
             {t.projects.items.map((p) => (
-              <ProjectCard key={p.name} project={p} previewLabel={t.projects.previewBtn} />
+              <ProjectCard key={p.name} project={p} labels={t.projects} />
             ))}
           </div>
 
@@ -468,6 +441,13 @@ export default function Portfolio() {
                     {t.education.topics.map((tp) => (
                       <span key={tp} className="topic-pill">{tp}</span>
                     ))}
+                  </div>
+                  <div className="edu-school">
+                    <p className="edu-school-text">{t.education.aboutSchool}</p>
+                    <ul className="edu-school-facts">
+                      {t.education.schoolFacts.map((f) => <li key={f}>{f}</li>)}
+                    </ul>
+                    <a href="https://supnum.mr" target="_blank" rel="noreferrer" className="edu-school-link" dir="ltr">supnum.mr</a>
                   </div>
                 </div>
               </div>
@@ -525,11 +505,11 @@ export default function Portfolio() {
           <div className="contact-cards">
             <a href={`mailto:${contactInfo.email}`} className="contact-card">
               <span className="contact-card-label">Email</span>
-              <span className="contact-card-value">{contactInfo.email}</span>
+              <span className="contact-card-value" dir="ltr">{contactInfo.email}</span>
             </a>
             <a href={contactInfo.github} target="_blank" rel="noreferrer" className="contact-card">
               <span className="contact-card-label">GitHub</span>
-              <span className="contact-card-value">github.com/SidA7MD</span>
+              <span className="contact-card-value" dir="ltr">github.com/SidA7MD</span>
             </a>
           </div>
 
